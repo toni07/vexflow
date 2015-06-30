@@ -10,12 +10,14 @@
     <div>
         <canvas width="1400" height="170"></canvas>
     </div>
+    <div id="toto"></div>
     <script>
         $(document).ready(function() {
             // Get the rendering context
             var canvas = $("canvas")[0];
-            var renderer = new Vex.Flow.Renderer(canvas,
-                    Vex.Flow.Renderer.Backends.CANVAS);
+            /*var renderer = new Vex.Flow.Renderer(canvas, Vex.Flow.Renderer.Backends.CANVAS);*/
+            var renderer = new Vex.Flow.Renderer('toto', Vex.Flow.Renderer.Backends.SVG);
+
             var ctx = renderer.getContext();
             ctx.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 

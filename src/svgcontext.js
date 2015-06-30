@@ -555,6 +555,7 @@ Vex.Flow.SVGContext = (function() {
       attributes.y = y;
 
       var txt = this.create("text");
+      //this has to be modified!
       txt.textContent = text;
       this.applyAttributes(txt, attributes);
       this.svg.appendChild(txt);
