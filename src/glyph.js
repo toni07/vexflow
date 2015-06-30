@@ -139,6 +139,7 @@ Vex.Flow.Glyph = (function() {
   };
 
   Glyph.renderOutline = function(ctx, outline, scale, x_pos, y_pos) {
+    console.log('##renderoutline', ctx, outline, scale, x_pos, y_pos);
     var outlineLength = outline.length;
 
     ctx.beginPath();

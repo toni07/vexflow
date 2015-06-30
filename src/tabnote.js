@@ -328,6 +328,7 @@ Vex.Flow.TabNote = (function() {
               this.render_options.glyph_font_scale, glyph.code);
         } else {
           var text = glyph.text.toString();
+          console.log('##fillText2', text, x, y);
           ctx.fillText(text, tab_x, y + 5);
         }
       }
