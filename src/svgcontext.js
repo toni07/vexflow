@@ -547,7 +547,7 @@ Vex.Flow.SVGContext = (function() {
       return box;
     },
 
-    fillText: function(text, x, y) {
+    fillText: function(text, x, y, notePosition) {
       var attributes = {};
       Vex.Merge(attributes, this.attributes);
       attributes.stroke = "none";
@@ -555,10 +555,12 @@ Vex.Flow.SVGContext = (function() {
       attributes.y = y;
 
       var txt = this.create("text");
-      txt.addEventListener('click', function(){
-        alert('test');
-      });
-      txt.style.cursor = 'pointer';
+      if(null != notePosition && null != notePosition.clickCallBack){
+        txt.style.cursor = 'pointer';
+        txt.addEventListener('click', function(){
+          notePosition.clickCallBack('useless');
+        });
+      }
       txt.textContent = text;
       this.applyAttributes(txt, attributes);
       this.svg.appendChild(txt);
