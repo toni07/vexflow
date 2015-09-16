@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>VexFlow Tests</title>
+    <title>Tests</title>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
     <script src="build/vexflow-min.js"></script>
 </head>
@@ -40,15 +40,12 @@
                 // A chord with the note on the 3rd string bent
                 new Vex.Flow.TabNote({
                     positions: [{str: 2, fret: 10, iddb: 2, clickCallBack: functionClickOnNote},
-                        {str: 3, fret: 9, iddb: 1, clickCallBack: functionClickOnNote}],
+                        {str: 3, fret: 9, iddb: 3, clickCallBack: functionClickOnNote}],
                     duration: "q"}).
                         addModifier(new Vex.Flow.Bend("Full"), 1),
 
                 // A single note with a harsh vibrato
-                new Vex.Flow.TabNote({
-                    positions: [{str: 2, fret: 5}],
-                    duration: "h"}).
-                        addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
+                new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}], duration: "h"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
             ];
 
             Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
