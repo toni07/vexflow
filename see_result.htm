@@ -8,7 +8,6 @@
     <script src="build/vexflow-min.js"></script>
 	-->
 	<script src="src/vex.js"></script>
-	<script src="src/vex.js",
 	<script src="src/flow.js"></script>
 	<script src="src/fraction.js"></script>
 	<script src="src/tables.js"></script>
@@ -50,6 +49,7 @@
 	<script src="src/clef.js"></script>
 	<script src="src/music.js"></script>
 	<script src="src/keymanager.js"></script>
+	<script src="src/svgcontext.js"></script>
 	<script src="src/renderer.js"></script>
 	<script src="src/raphaelcontext.js"></script>
 	<script src="src/canvascontext.js"></script>
@@ -74,10 +74,12 @@
 	<script src="src/ornament.js"></script>
 	<script src="src/pedalmarking.js"></script>
 	<script src="src/textbracket.js"></script>
+	<script src="src/gracenotegroup.js"></script>
 	
-	<script src="src/fonts/gonville.js"></script>
+	<!-- <script src="src/fonts/gonville.js"></script>
 	<script src="src/fonts/gonville_all.js"></script>
 	<script src="src/fonts/gonville_original.js"></script>
+	-->
 	<script src="src/fonts/vexflow_font.js"></script>
 	
 </head>
@@ -123,7 +125,7 @@
                 new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}], duration: "h"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
             ];
 
-            Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
+           Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
         });
     </script>
 </body>
