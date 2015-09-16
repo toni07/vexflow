@@ -337,11 +337,9 @@ Vex.Flow.TabNote = (function() {
 
     // The main rendering function for the entire note
     draw: function() {
-      if (!this.context) throw new Vex.RERR("NoCanvasContext",
-          "Can't draw without a canvas context.");
+      if (!this.context) throw new Vex.RERR("NoCanvasContext", "Can't draw without a canvas context.");
       if (!this.stave) throw new Vex.RERR("NoStave", "Can't draw without a stave.");
-      if (this.ys.length === 0) throw new Vex.RERR("NoYValues",
-          "Can't draw note without Y values.");
+      if (this.ys.length === 0) throw new Vex.RERR("NoYValues", "Can't draw note without Y values.");
 
       var render_stem = this.beam == null && this.render_options.draw_stem;
 

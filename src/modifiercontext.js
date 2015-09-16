@@ -75,7 +75,6 @@ Vex.Flow.ModifierContext = (function() {
 
     preFormat: function() {
       if (this.preFormatted) return;
-	  console.log('##this.PREFORMAT', this.PREFORMAT);
       this.PREFORMAT.forEach(function(modifier) {
         L("Preformatting ModifierContext: ", modifier.CATEGORY);
         modifier.format(this.getModifiers(modifier.CATEGORY), this.state, this);

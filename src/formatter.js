@@ -191,15 +191,10 @@ Vex.Flow.Formatter = (function() {
       beams = Vex.Flow.Beam.applyAndGetBeams(voice);
     }
 	
-	console.log('##toto1');
-
     // Instantiate a `Formatter` and format the notes.
     var toto = new Formatter().joinVoices([voice], {align_rests: opts.align_rests});
-	console.log('##toto1aa');
 	toto.formatToStave([voice], stave, {align_rests: opts.align_rests});
 	  
-	console.log('##toto1a');
-
     // Render the voice and beams to the stave.
     voice.setStave(stave);
     voice.draw(ctx, stave);
@@ -208,9 +203,7 @@ Vex.Flow.Formatter = (function() {
         beams[i].setContext(ctx).draw();
       }
     }
-	console.log('##toto2');
-
-    // Return the bounding box of the voice.
+	// Return the bounding box of the voice.
     return voice.getBoundingBox();
   };
 
@@ -457,9 +450,7 @@ Vex.Flow.Formatter = (function() {
 
         // Make sure that all tickables in this context have calculated their
         // space requirements.
-		console.log('##aa1');
         context.preFormat();
-		console.log('##aa2');
 
         var thisMetrics = context.getMetrics();
         var width = context.getWidth();
@@ -595,14 +586,10 @@ Vex.Flow.Formatter = (function() {
         stave: null
       };
 
-	  console.log('##tata1');
       Vex.Merge(opts, options);
       this.alignRests(voices, opts.align_rests);
-	  console.log('##tata1a');
       this.createTickContexts(voices);
-	  console.log('##tata1b');
       this.preFormat(justifyWidth, opts.context, voices, opts.stave);
-		console.log('##tata2');
       // Only postFormat if a stave was supplied for y value formatting
       if (opts.stave) this.postFormat();
       return this;
