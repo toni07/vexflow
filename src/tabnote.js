@@ -321,7 +321,12 @@ Vex.Flow.TabNote = (function() {
         var note_glyph_width = this.glyph.head_width;
         var tab_x = x + (note_glyph_width / 2) - (glyph.width / 2);
 
-        ctx.clearRect(tab_x - 2, y - 3, glyph.width + 4, 6);
+		var currentNote = this.positions[i];
+		var rectangleOptions = {};
+		if(null != currentNote.isVisible && !currentNote.isVisible){
+			rectangleOptions.clickCallBack = currentNote.clickCallBack;
+		}
+        ctx.clearRect(tab_x - 2, y - 3, glyph.width + 4, 6, rectangleOptions);
 
         if (glyph.code) {
           Vex.Flow.renderGlyph(ctx, tab_x, y + 5 + glyph.shift_y,
@@ -329,8 +334,8 @@ Vex.Flow.TabNote = (function() {
         }
         else {
           var text = glyph.text.toString();
-          console.log('##fillText2', text, x, y);
-          ctx.fillText(text, tab_x, y + 5, this.positions[i]);
+          console.log('##fillText2', glyph, text, x, y);
+          ctx.fillText(text, tab_x, y + 5, currentNote);
         }
       }
     },

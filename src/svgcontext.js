@@ -278,13 +278,19 @@ Vex.Flow.SVGContext = (function() {
 
     // ## Rectangles:
 
-    rect: function(x, y, width, height, attributes) {
+    rect: function(x, y, width, height, attributes, options) {
       // Avoid invalid negative height attribs by
       // flipping the rectangle on its head:
       if (height < 0) this.flipRectangle(arguments);
 
       // Create the rect & style it:
       var rect = this.create("rect");
+	  if(null != options && null != options.clickCallBack){
+        rect.style.cursor = 'pointer';
+        rect.addEventListener('click', function(){
+          options.clickCallBack('toto');
+        });
+      }
       if(typeof attributes === "undefined") attributes = {
         fill: "none",
         "stroke-width": this.lineWidth,
@@ -303,14 +309,14 @@ Vex.Flow.SVGContext = (function() {
       return this;
     },
 
-    fillRect: function(x, y, width, height) {
+    fillRect: function(x, y, width, height, options) {
       if(height < 0) this.flipRectangle(arguments);
 
       this.rect(x, y, width - 0.5, height - 0.5, this.attributes);
       return this;
     },
 
-    clearRect: function(x, y, width, height) {
+    clearRect: function(x, y, width, height, options) {
       // TODO(GCR): Improve implementation of this...
       // Currently it draws a box of the background color, rather
       // than creating alpha through lower z-levels.
@@ -328,7 +334,7 @@ Vex.Flow.SVGContext = (function() {
 
       if (height < 0) this.flipRectangle(arguments);
 
-      this.rect(x, y, width - 0.5, height - 0.5, this.background_attributes);
+      this.rect(x, y, width - 0.5, height - 0.5, this.background_attributes, options);
       return this;
     },
 
@@ -561,7 +567,13 @@ Vex.Flow.SVGContext = (function() {
           notePosition.clickCallBack('useless');
         });
       }
-      txt.textContent = text;
+	  if(null != notePosition && null != notePosition.isVisible && !notePosition.isVisible){
+		attributes.fill = '#00ff00';
+		txt.textContent = '+';
+	  }
+	  else{
+		txt.textContent = text;
+	  }
       this.applyAttributes(txt, attributes);
       this.svg.appendChild(txt);
     },

@@ -96,12 +96,16 @@
             ctx.setFont("Arial", 10, "").setBackgroundFillStyle("#eed");
 
             // Create and draw the tablature stave
-            var tabstave = new Vex.Flow.TabStave(10, 0, 600);
+            var tabstave = new Vex.Flow.TabStave(10, 0, 300);
             tabstave.addTabGlyph();
             tabstave.setContext(ctx).draw();
 
             var functionClickOnNote = function(){
                 console.log('##clicked on', this);
+            };
+			
+			var functionClickOnNoteToAddOne = function(){
+                console.log('##clicked to add on', this);
             };
 
             // Create some notes
@@ -118,8 +122,9 @@
                     duration: "q"}).addModifier(new Vex.Flow.Bend("Full"), 1),
 
                 // A single note with a harsh vibrato
-                new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}], duration: "h"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
-				, new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}], duration: "h"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
+                new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}, {str: 1, fret: 6, clickCallBack: functionClickOnNoteToAddOne, isVisible: false}], duration: "h"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
+				, new Vex.Flow.TabNote({positions: [{str: 1, fret: 6, clickCallBack: functionClickOnNoteToAddOne, isVisible: false}], duration: "q"}).addModifier(new Vex.Flow.Vibrato().setHarsh(true).setVibratoWidth(70), 0)
+				, new Vex.Flow.TabNote({positions: [{str: 2, fret: 5}], duration: "h"})
             ];
 
            Vex.Flow.Formatter.FormatAndDraw(ctx, tabstave, notes);
