@@ -560,7 +560,32 @@ Vex.Flow.SVGContext = (function() {
       attributes.x = x;
       attributes.y = y;
 
-      var txt = this.create("text");
+		var me = this;
+		var txt = this.create("text");
+		var verticalBar;
+		txt.addEventListener('mouseover', function(){
+			if(null != verticalBar){
+				try{
+					me.svg.removeChild(verticalBar);
+				}
+				catch(e){
+				}
+			}
+			verticalBar = me.create('line');
+			var attributesBar = {
+				x1: x + 4,
+				y1: 20,
+				x2: x + 4,
+				y2: 180,
+				style: 'stroke:rgb(200,200,200);stroke-width:2'
+			};
+			me.applyAttributes(verticalBar, attributesBar);
+			me.svg.appendChild(verticalBar);
+		});
+		txt.addEventListener('mouseout', function(){
+			me.svg.removeChild(verticalBar);
+		});
+		
       if(null != notePosition && null != notePosition.clickCallBack){
         txt.style.cursor = 'pointer';
         txt.addEventListener('click', function(){
